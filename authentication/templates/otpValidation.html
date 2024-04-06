@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OTP Validation</title>
+    <!-- CSS File -->
+    <link rel="stylesheet" type="text/css" href="/authentication/static/css/login.css">
+    <link rel="stylesheet" type="text/css" href="/authentication/static/css/signup.css">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+<body class="VerifyMail-body">
+
+    <section class="header VerifyMail-header">
+        <nav>
+            <div class="nav-container">
+                <img src="/authentication/static/images/logo.png" alt="Logo">
+                <ul>
+                    <a class="signup-link" href="{{ url_for('auth.sendMail') }}"><li>Sign up</li></a>
+                    <a class="login-link" href="{{ url_for('auth.login') }}"><li>Login</li></a>
+                </ul>
+            </div>
+        </nav>
+
+        <section class="verifymail-container">
+            <form action="{{ url_for('auth.otpValidation') }}" method="post">
+                <h1>
+                    <img src="/authentication/static/images/password.gif" alt="OTP">
+                </h1>
+                <h3>Please enter the 4-digit verification code that was sent to your email</h3>
+                <div class="container">
+                    <div>
+                        <label for="verify-mail-id">
+                            <i class="fa fa-envelope"></i>
+                            Verification Code <span class="required">*</span>
+                        </label>
+                        <input class="otp-chk" id="otp" name="otp" type="text" onkeydown="return checkOTP(event)" max="9999" required>
+                    </div>
+                    <div>{{ msg }}</div>
+                    <button type="submit" onclick="validateOTP()" name="validateOTP" id="validateOTP">Submit</button>
+                </div>
+            </form>
+        </section>
+    </section>
+
+    <script>
+        // Navigation Toggle
+        var navLinks = document.getElementById("navLinks");
+        let login_section = document.getElementById("login-section");
+        function showMenu(){
+            navLinks.style.top = "0";
+        }
+        function hideMenu(){
+            navLinks.style.top = "-250px";
+        }
+        // Check OTP Length
+        function checkOTP(event) {
+            if (event.key === "Backspace" || event.key === "Delete" || event.key === "Tab" ||
+            event.key === "Escape" || event.key === "Enter" ||
+            (event.key >= "0" && event.key <= "9")) {
+                if ((event.key >= "0" && event.key <= "9") && event.target.value.length >= 4) {
+                    return false; // Block input if length is already four
+                }
+                return true; // Allow input for allowed keys
+            }
+            return false
+        }
+    </script>
+</body>
+</html>

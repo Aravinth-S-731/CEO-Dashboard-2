@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CEO - Dashboard</title>
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="/static/navBar.css">
+    <link rel="stylesheet" href="/homePage/static/homePage.css">
+    <!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/landing_page.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/nav_bar.css') }}"> -->
+    <!-- ChartJS -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Chartist -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/chartist.js/latest/chartist.min.css">
+    <script src="https://cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+<body>
+
+
+    <!-- Navigation Bar -->
+    <nav id="navBar">
+        <div class="navLinks" id="navLinks">
+            <i class="fa-solid fa-times times-icon menu-icon" onclick="closeDashboardNav()"></i>
+            <ul>
+                <h3>Hi, Welcome {{username}}!</h3>
+                <a href="{{url_for('homePage.home_page')}}">
+                    <li><i class="fa-solid fa-chart-pie" ></i>Home</li>
+                </a>
+                <a href="{{url_for('financialPage.financialModule')}}">
+                    <li><i class="fa-solid fa-coins" ></i>Finance</li>
+                </a>
+                <a href="{{url_for('marketingPage.marketingModule')}}">
+                    <li><i class="fa-solid fa-bullhorn" ></i>Marketing</li>
+                </a>
+                <a href="{{url_for('operationalPage.operationalModule')}}">
+                    <li><i class="fa-solid fa-user-tie" ></i>Operational</li>
+                </a>
+                <a href="{{url_for('communicationPage.communicationModule')}}">
+                    <li><i class="fa-solid fa-comments" ></i>Chat</li>
+                </a>
+                <a href="{{url_for('logout')}}">
+                    <li><i class="fa-solid fa-right-from-bracket" ></i>Log out</li>
+                </a>
+            </ul>
+        </div>
+        <i class="fa-solid fa-bars menu-icon" onclick="openDashboardNav()"></i>
+    </nav>
+
+
+    <h3 class="chart-head">Revenue per Month</h3>
+    <!-- Monthly Revenue -->
+    <section class="monthly-revenue">
+        <div class="chart-container grid-item">
+            <div class="revenue-line-chat" id="revenue">
+                <canvas id="revenue-line-chart"></canvas>
+            </div>
+        </div>
+        <div class="revenue-information grid-item">
+            <h3>Revenue Statistics</h3>
+            <div class="content">
+                <div class="container">
+                    <h4 class="head">Highest Revenue</h4>
+                    <div>
+                        <h4>
+                            <span class="side-heading">Month: </span><span class="answer month" id="highest-revenue-month">Sample</span>
+                        </h4>
+                        <h4>
+                            <span class="side-heading">Amount: </span><span class="answer amount" id="highest-revenue-amount">12,345</span>
+                        </h4>
+                    </div>
+                </div>
+                <div class="container">
+                    <h4 class="head">Lowest Revenue</h4>
+                    <div>
+                        <h4>
+                            <span class="side-heading">Month: </span><span class="answer month" id="lowest-revenue-month">Sample</span>
+                        </h4>
+                        <h4>
+                            <span class="side-heading">Amount: </span><span class="answer amount" id="lowest-revenue-amount">12,345</span>
+                        </h4>
+                    </div>
+                </div>
+                <div class="container">
+                    <h4 class="head">Gross Revenue</h4>
+                    <div>
+                        <h4>
+                            <span class="side-heading">Tot: </span><span class="answer amount" id="total-revenue-amount">Sample</span>
+                        </h4>
+                        <h4>
+                            <span class="side-heading">Avg: </span><span class="answer amount" id="average-revenue-amount">12,345</span>
+                        </h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+    <h3 class="chart-head">Payment Mode</h3>
+    <!-- Payment Method -->
+    <section class="payment-mode">
+        <div class="information">
+            <div class="container">
+                <img src="/homePage/static/images/upi.png" alt="UPI" />
+                <h4>UPI users</h4>
+                <h4 class="no-of-users"><span id="upi-users">123</span></h4>
+            </div>
+            <div class="container">
+                <img src="/homePage/static/images/credit-card.png" alt="Credit">
+                <h4>Credit Card users</h4>
+                <h4 class="no-of-users"><span id="credit-card-users">123</span></h4>
+            </div>
+            <div class="container">
+                <img src="/homePage/static/images/debit-card.png" alt="Debit">
+                <h4>Debit Card users</h4>
+                <h4 class="no-of-users"><span id="debit-card-users">123</span></h4>
+            </div>
+        </div>
+        <div class="chart-container">
+            <div class="payment-pie-chart" id="payment">
+                <canvas id="payment-pie-chart"></canvas>
+            </div>
+        </div>
+    </section>
+
+    <!-- Profit and Accounts Transactions -->
+    <section class="accounts">
+        <div class="transactions">
+            <div class="accounts-data grid">
+                <h3 class="chart-head">Account Balance</h3>
+                <!-- Balance Information -->
+                <div class="balance-info">
+                    <div class="balance-details">
+                        <div class="balance-numbers">
+                            <h4 class="balance-head">Balance</h4>
+                            <h2 id="balance-amount" class="balance-amount"></h2>
+                        </div>
+                        <div class="bank-logo">
+                            <img src="/homePage/static/images/bank-logo.png" alt="Bank Logo">
+                        </div>
+                    </div>
+                    <div class="account-info">
+                        <h5 class="balance-head account-info">Account Info</h5>
+                        <h4 id="account-number" class="account-number account-info">1561 00** **** 250</h4>
+                    </div>
+                </div>
+                <!-- Transactions History-->
+                <div class="recent-transaction" id="recent-transaction">
+                    <h4>Recent Transactions</h4>
+                    <div class="transaction-history" id="transaction-history">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="chart-container">
+            <div class="profit-bar-chart" id="profit-chart">
+                <h3 class="chart-head">Profit Earned</h3>
+                <canvas id="profit-bar-chart"></canvas>
+            </div>
+            <div class="stocks">
+                <h3 class="chart-head">Current Investors</h3>
+                <div class="main-container">
+                    <div class="container">
+                        <h5>Apple Inc.</h5>
+                        <img src="/homePage/static/images/apple.png" alt="Apple">
+                        <p><span>₹11</span> (in lakhs)</p>
+                    </div>
+                    <div class="container">
+                        <h5>Discord</h5>
+                        <img src="/homePage/static/images/discord.png" alt="Discord">
+                        <p><span>₹07</span> (in lakhs)</p>
+                    </div>
+                    <div class="container">
+                        <h5>Slack</h5>
+                        <img src="/homePage/static/images/slack.png" alt="Slack">
+                        <p><span>₹03</span> (in lakhs)</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        const month = {{month | tojson}}
+        const revenue = {{revenue | tojson}}
+        const profit = {{profit | tojson}}
+        const payment_mode = {{payment_mode | tojson}}
+        const role = {{role | tojson}}
+        const username = {{username | tojson}}
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.min.js" integrity="sha512-7U4rRB8aGAHGVad3u2jiC7GA5/1YhQcQjxKeaVms/bT66i3LVBMRcBI9KwABNWnxOSwulkuSXxZLGuyfvo7V1A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="/homePage/static/javascript/homePage.js"></script>
+
+</body>
+</html>

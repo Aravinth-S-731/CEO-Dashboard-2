@@ -1,0 +1,251 @@
+*{
+    padding: 0;
+    margin: 0;
+    font-family: sans-serif;
+    box-sizing: border-box;
+}
+:root{
+    --primary:           #45ADFF;
+    --secondary:         #00cccc;
+    --secondary-variant: #8289e8;
+    --on-primary:        #ffffff;
+    --on-secondary:      #151515;
+    --background:        #ffffff;
+    --background-variant:#151515;
+    --surface:           #dddddd;
+    --text-color:        #000000;
+}
+
+body{
+    height: 100svh;
+    /* background-image: linear-gradient(45deg, transparent 0%, transparent 55%,rgba(64, 64, 64,0.04) 55%, rgba(64, 64, 64,0.04) 76%,transparent 76%, transparent 100%),linear-gradient(135deg, transparent 0%, transparent 14%,rgba(64, 64, 64,0.04) 14%, rgba(64, 64, 64,0.04) 41%,transparent 41%, transparent 100%),linear-gradient(45deg, transparent 0%, transparent 2%,rgba(64, 64, 64,0.04) 2%, rgba(64, 64, 64,0.04) 18%,transparent 18%, transparent 100%),linear-gradient(135deg, transparent 0%, transparent 61%,rgba(64, 64, 64,0.04) 61%, rgba(64, 64, 64,0.04) 71%,transparent 71%, transparent 100%),linear-gradient(90deg, rgb(255,255,255),rgb(255,255,255)); */
+    background-image: url(/authentication/static/images/figma-background\ plain.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.nav-container{
+    padding: 1em 2em;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    z-index: 5;
+    /* background: transparent; */
+}
+nav img{
+    width: 50px;
+    filter: invert(1);
+}
+nav ul{
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+}
+nav ul a{
+    text-decoration: none;
+    color: var(--background-variant);
+    font-size: 18px;
+}
+nav ul a li{
+    width: 100px;
+    padding: 10px;
+    text-align: center;
+}
+nav .login-link li{
+    color: var(--background);
+    background: #156fb5;
+    border-radius: 7px;
+}
+
+.login-container, .verifymail-container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 50%;
+    left: 75%;
+    /* left: 75%; */
+    transform: translate(-50%, -50%);
+    /* background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px); */
+    border-radius: 5px;
+    /* box-shadow: 1px 1px 10px #000; */
+}
+
+.VerifyMail-body{
+    background-image: url(/authentication/static/images/verifyMail-background.png);
+}
+.VerifyMail-header{
+    background-image: none;
+}
+.verifymail-container{
+    left: 80%;
+}
+
+.login-container form, .verifymail-container form{
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 350px;
+    height: 445px;
+    gap: 2em;
+    padding: 30px 30px;
+    /* color: var(--background); */
+    color: var(--primary);
+    /* background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px); */
+    box-sizing: border-box;
+    border-radius: 0 5px 5px 0;
+}
+.login-container h1{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.login-container h1 img, .verifymail-container h1 img{
+    width: 50px;
+    mix-blend-mode: multiply;
+}
+.login-container .container,
+.verifymail-container .container{
+    display: flex;
+    flex-direction: column;
+    /* align-items: flex-start; */
+    align-items: center;
+    gap: 2em;
+}
+.login-container .container div,
+.verifymail-container .container div {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5em;
+}
+.login-container .container div label i,
+.verifymail-container .container div label i{
+    margin-right: 5px;
+}
+.required{
+    color: red;
+}
+.container input{
+    padding: 2px 10px;
+    border: none;
+    background: transparent;
+    border-bottom: solid 1px var(--primary);
+}
+
+
+.verifymail-container .container input{
+    margin-top: 10px;
+    width: 250px;
+}
+.verifymail-container .container .otp-chk{
+    text-align: center;
+    width: 100%;
+    padding: 5px;
+    font-size: large;
+    font-weight: 600;
+    letter-spacing: 10px;
+    color: var(--primary);
+}
+
+.container input:focus{
+    outline: none;
+}
+.container div .viewPasswordContainer{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 2px;
+    font-size: 12px;
+}
+.viewPassword{
+    width: 10px;
+    margin: 5px 0;
+}
+.new-user{
+    font-size: 14px;
+}
+.new-user span a{
+    text-decoration: underline;
+    color: var(--primary);
+    font-weight: 600;
+}
+.invalidMsg{
+    font-size: 14px;
+    color: orange;
+}
+.login-btn, #submitMail, #validateOTP{
+    cursor: pointer;
+    width: 120px;
+    height: 40px;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--background);
+    background-color: var(--primary);
+    border: none;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+.login-btn:hover,
+#submitMail:hover,
+#validateOTP:hover{
+    transition: 0.3s;
+    transform: scale(1.03);
+    box-shadow: 1px 1px 10px #000;
+}
+
+
+@media (min-width: 435px) and (max-width: 780px) {
+    .login-container,
+    .verifymail-container{
+        top: 60%;
+    }
+}
+
+@media (max-width: 435px) {
+    body{
+        background-image: none;
+    }
+    .VerifyMail-body{
+        background-image: none;
+        height: 100svh;
+    }
+    .login-container,
+    .verifymail-container{
+        top: 55%;
+        left: 50%;
+        background: rgba(255, 255, 255, 0.7);
+        backdrop-filter: blur(5px);
+    }
+    .verifymail-container{
+        top: 50%;
+    }
+    .verifymail-container form{
+        width: 300px;
+    }
+    /* .image-container{
+        display: none;
+    } */
+    .header{
+        height: 100svh;
+        background-image: url(/authentication/static/images/login.jpg);
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        mix-blend-mode: multiply;
+    }
+    .VerifyMail-header{
+        background-image: url(/authentication/static/images/verify-mail-mobile.jpg);
+        background-position: bottom;
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+
+}

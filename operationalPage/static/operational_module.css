@@ -1,0 +1,161 @@
+*{
+    padding: 0;
+    margin: 0;
+    font-family: sans-serif;
+    overflow-x: hidden;
+}
+:root{
+    --primary:           #45ADFF;
+    --secondary:         #00cccc;
+    --secondary-variant: #8289e8;
+    --on-primary:        #ffffff;
+    --on-secondary:      #151515;
+    --background:        #ffffff;
+    --background-variant:#151515;
+    --surface:           #dddddd;
+    --text-color:        #000000;
+}
+body{
+    width: 100svw;
+    height: 100svh;
+    text-align: center;
+    /* background-image: linear-gradient(rgba(255,255,255,0.9), rgba(255,255,255,0.9)), url(images/departments.jpg); */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+h2{
+    padding-top: 50px;
+    padding-bottom: 10px;
+}
+
+/* Employee Per Section */
+.emp-by-section{
+    display: grid;
+    grid-template-columns: 70% 30%;
+    justify-content: space-around;
+    align-items: center;
+}
+.emp-by-section img{
+    height: 300px;
+    mix-blend-mode: multiply;
+}
+.sub-grid {
+    padding: 0 50px;
+}
+
+
+/* Employee Count */
+
+.gender{
+    padding:  20px 50px;
+    /* margin: 0 100px; */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    border-bottom: 1px solid #000;
+    padding-bottom: 100px;
+}
+.gender img{
+    width: 180px;
+    mix-blend-mode: multiply;
+}
+.gender .grid{
+    display: flex;
+    width: 300px;
+    text-align: center;
+    border: none;
+    border-radius: 25px;
+    box-shadow: 1px 1px 10px #000;
+    padding: 20px;
+}
+.gender .grid div{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 2em;
+}
+.gender h1{
+    font-size: 72px;
+    color: var(--primary);
+}
+
+/* Salary per department */
+.salary-per-dept{
+    margin-bottom: 50px;
+}
+
+/* Salary Break down */
+.sal-contribution{
+    padding: 20px 50px;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    /* justify-content: space-around; */
+    align-items: center;
+    /* text-align: center; */
+}
+.sal-contribution img{
+    width: 500px;
+}
+.sal-contribution .sub-grid{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+@media (min-width: 400px) and (max-width :1024px){
+    .emp-by-section img{
+        height: 150px;
+    }
+    .gender .grid{
+        width: 150px;
+    }
+    .gender img{
+        width: 70px;
+    }
+    .gender h1{
+        font-size: 44px;
+    }
+    .sal-contribution img{
+        width: 250px;
+    }
+}
+
+@media (max-width :435px){
+    .emp-by-section{
+        grid-template-columns: 100%;
+        justify-items: center;
+    }
+    .emp-by-section:nth-child(1){
+        height: 300px;
+    }
+    .emp-by-section img{
+        display: none;
+    }
+
+    .gender{
+        flex-direction: column;
+        gap: 20px;
+        align-items: center;
+    }
+    .gender .grid{
+        justify-content: center;
+        height: 200px;
+        width: 250px;
+    }
+    .gender img{
+        width: 100px;
+    }
+    .gender h1{
+        font-size: 32px;
+    }
+    .sal-contribution{
+        grid-template-columns: 100%;
+        justify-items: center;
+        /* display: none; */
+    }
+    .sal-contribution img{
+        width: 200px;
+    }
+}

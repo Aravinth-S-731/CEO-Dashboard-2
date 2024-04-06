@@ -1,0 +1,234 @@
+*{
+    padding: 0;
+    margin: 0;
+    font-family: sans-serif;
+}
+:root{
+    --primary:           #45ADFF;
+    --secondary:         #00cccc;
+    --secondary-variant: #8289e8;
+    --on-primary:        #ffffff;
+    --on-secondary:      #151515;
+    --background:        #ffffff;
+    --background-variant:#151515;
+    --surface:           #dddddd;
+    --text-color:        #000000;
+}
+body{
+    width: 100svw;
+    height: 100svh;
+    background-color: var(--background);
+    /* background-color: #2c2c2c; */
+    text-align: center;
+    /* overflow: hidden; */
+    /* overflow-y: hidden; */
+    overflow-x: hidden;
+    background-image: linear-gradient(rgba(255,255,255,0.9), rgba(255,255,255,0.9)),url(images/marketing-module-center-background.jpg);
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+/* Overview */
+h2{
+    padding-top: 50px;
+    padding-bottom: 10px;
+}
+.overview{
+    width: 95%;
+    padding: 50px;
+    padding-top: 20px;
+    display: grid;
+    grid-template-columns: auto auto auto;
+    /* position: absolute;
+    top: 50%;
+    transform: translateY(-50%); */
+}
+.current-stats{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    background-color: var(--primary);
+    height: 300px;
+    border-radius: 25px;
+}
+.content-grid{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    color: var(--primary);
+    background-color: var(--on-primary);
+    border-radius: 10px;
+    margin: 0 30px;
+    padding: 7px 0;
+}
+.content-grid i{
+    text-align: left;
+    margin: 5px;
+    border-right: 2px solid var(--primary);
+}
+.content-grid .text-content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+/* ----- MONTHLY SALES GROWTH ----- */
+.monthly-sales-growth, .sales-target{
+    text-align: center;
+}
+.monthly-sales-growth{
+    text-align: center;
+}
+.monthly-sales-growth .percentage, .sales-target .percentage{
+    background-color: var(--primary);
+    padding: 5px 0;
+    border-radius: 7px;
+    color: var(--on-primary);
+    margin: 10px 40px 0 40px;
+}
+.monthly-sales-growth .chart-container{
+    width: 100%;
+    display: grid;
+    justify-items: center;
+}
+
+.percentage #sales-growth-percentage, #sales-target-percentage{
+    font-size: 22px;
+}
+
+/* ----- SALES TARGET ----- */
+.sales-target .chart-container{
+    text-align: center;
+    display: flex;
+    justify-content: center;
+}
+.sales-target .chart-container canvas{
+    width: 420px;
+}
+
+/* ---------- */
+/* AD REVENUE AND EXPENSE */
+/* ---------- */
+.marketing-ratios{
+    width: 95%;
+    padding: 50px;
+    padding-top: 20px;
+    display: flex;
+    justify-content: space-evenly;
+    gap: 20px;
+}
+.container{
+    width: auto;
+    box-shadow: 1px 1px 10px #000;
+    padding: 20px;
+    border-radius: 25px;
+    background-color: var(--background);
+}
+.container .sub-container{
+    display: flex;
+    justify-content: space-evenly;
+}
+.container .content-container{
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.container h3{
+    text-align: center;
+}
+.container img{
+    width: 250px;
+    mix-blend-mode: multiply;
+}
+.container .value-container{
+    filter: drop-shadow(3px 3px 3px #898989);
+    color: var(--primary);
+    margin: 10px 10px 0 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
+}
+.container .value-container i{
+    font-size: 36px;
+}
+.container .rupee-symbol{
+    font-size: 22px;
+}
+.container .value{
+    font-size: 36px;
+    font-weight: 800;
+}
+.container .percentage{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.4em;
+    margin: 5px;
+}
+
+.row-1 .container:nth-child(1) .percentage,
+.row-2 .container:nth-child(1) .percentage,
+.row-2 .container:nth-child(2) .percentage{
+    color: green;
+}
+.row-1 .container:nth-child(2) .percentage{
+    color: red;
+}
+.container .detail{
+    color: var(--primary);
+    opacity: 0.6;
+    margin: 0 5px;
+    margin-top: 20px;
+    font-size: 15px;
+}
+.container .info-30-days{
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    margin: 20px;
+    font-size: 14px;
+    opacity: 0.5;
+}
+
+@media (min-width: 400px) and (max-width :1024px){
+    .overview{
+        grid-template-columns: auto;
+        gap: 40px;
+        justify-content: center;
+    }
+    .overview .current-stats{
+        max-width: 500px;
+    }
+    .marketing-ratios {
+        flex-direction: column;
+    }
+}
+
+@media (max-width :435px){
+    .overview{
+        grid-template-columns: auto;
+        padding: 20px;
+        gap: 40px;
+        justify-content: center;
+    }
+    .overview .current-stats{
+        max-width: 500px;
+    }
+    .marketing-ratios {
+        flex-direction: column;
+        padding: 20px;
+    }
+    .container .sub-container{
+        flex-direction: column;
+        align-items: center;
+    }
+    .container .content-container{
+        width: 250px;
+    }
+}

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CEO -Marketing Module</title>
+    <!-- CSS FILE -->
+    <link rel="stylesheet" href="/static/navBar.css">
+    <link rel="stylesheet" href="/operationalPage/static/operational_module.css">
+    <!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/marketing_module.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/nav_bar.css') }}"> -->
+    <!-- ChartJS -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Chartist -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/chartist.js/latest/chartist.min.css">
+    <script src="https://cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav id="navBar">
+        <div class="navLinks" id="navLinks">
+            <i class="fa-solid fa-times times-icon menu-icon" onclick="closeDashboardNav()"></i>
+            <ul>
+                <h3>Hi, Welcome {{username}}!</h3>
+                <a href="{{url_for('homePage.home_page')}}">
+                    <li><i class="fa-solid fa-chart-pie" ></i>Home</li>
+                </a>
+                <a href="{{url_for('financialPage.financialModule')}}">
+                    <li><i class="fa-solid fa-coins" ></i>Finance</li>
+                </a>
+                <a href="{{url_for('marketingPage.marketingModule')}}">
+                    <li><i class="fa-solid fa-bullhorn" ></i>Marketing</li>
+                </a>
+                <a href="{{url_for('operationalPage.operationalModule')}}">
+                    <li><i class="fa-solid fa-user-tie" ></i>Operational</li>
+                </a>
+                <a href="{{url_for('communicationPage.communicationModule')}}">
+                    <li><i class="fa-solid fa-comments" ></i>Chat</li>
+                </a>
+                <a href="{{url_for('logout')}}">
+                    <li><i class="fa-solid fa-right-from-bracket" ></i>Log out</li>
+                </a>
+            </ul>
+        </div>
+        <i class="fa-solid fa-bars menu-icon" onclick="openDashboardNav()"></i>
+    </nav>
+
+    <!-- Employees per section -->
+    <h2>Employees Per Department:</h2>
+    <section class="emp-by-section">
+        <div class="emp-per-dept sub-grid">
+            <!-- <h3>Number of Employees per Department</h3> -->
+            <canvas id="emp-per-dept"></canvas>
+        </div>
+        <img src="/operationalPage/static/images/office.jpg" alt="Department image">
+    </section>
+
+
+    <!-- Gender Count -->
+    <h2>Employee Break Down</h2>
+    <section class="gender">
+        <div class="male grid">
+            <div>
+                <img src="/operationalPage/static/images/male.gif" alt="Male">
+                <h1><span id="male-count"></span></h1>
+            </div>
+        </div>
+        <div class="female grid">
+            <!-- <h3>Male Employee</h3> -->
+            <div>
+                <img src="/operationalPage/static/images/female.gif" alt="female">
+                <h1><span id="female-count"></span></h1>
+            </div>
+        </div>
+        <!-- Employee Gender Module -->
+        <div class="emp-gender grid">
+            <!-- <h3>Employee Breakdown</h3> -->
+            <canvas id="gender-chart"></canvas>
+        </div>
+    </section>
+
+    <!-- Salary Distribution -->
+    <h2>Average Salary Per Department</h2>
+    <section class="salary-per-dept">
+        <!-- Avg Salary by Dept -->
+        <div class="avg-salary-by-dept sub-grid">
+            <canvas id="avg-salary-by-dept"></canvas>
+        </div>
+    </section>
+
+    <h2>Contribution - Department</h2>
+    <!-- Salary contribution -->
+    <section class="sal-contribution">
+        <img src="/operationalPage/static/images/contribution.jpg" alt="Contribution">
+        <!-- Contribution -->
+        <div class="contribution-module sub-grid">
+            <canvas id="contribution-chart"></canvas>
+        </div>
+    </section>
+
+    <!-- Salary Range Breakdown -->
+    <h2>Salary Range Breakdown</h2>
+    <section class="sal-breakdown">
+        <!-- Salary Range Breakdown by Amount -->
+        <div class="salary-range-breakdown-amt sub-grid">
+            <!-- <h3>Salary Range Breakdown - Amount</h3> -->
+            <canvas id="salary-range-breakdown-amt"></canvas>
+        </div>
+    </section>
+
+
+
+
+    <script>
+        const employee_count_per_department = {{employee_count_per_department | tojson}}
+        const average_salary_per_department = {{average_salary_per_department | tojson}}
+        const salary_range_of_employee = {{salary_range_of_employee | tojson}}
+        const employees_gender_count = {{employess_gender_count | tojson}}
+        const role = {{role | tojson}}
+        const username = {{username | tojson}}
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.min.js" integrity="sha512-7U4rRB8aGAHGVad3u2jiC7GA5/1YhQcQjxKeaVms/bT66i3LVBMRcBI9KwABNWnxOSwulkuSXxZLGuyfvo7V1A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="/operationalPage/static/javascript/operational_module.js"></script>
+</body>
+</html>

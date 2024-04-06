@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verify Email</title>
+    <!-- CSS File -->
+    <link rel="stylesheet" type="text/css" href="/authentication/static/css/login.css">
+    <link rel="stylesheet" type="text/css" href="/authentication/static/css/signup.css">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+<body class="VerifyMail-body">
+
+    <section class="header VerifyMail-header">
+        <nav>
+            <div class="nav-container">
+                <img src="/authentication/static/images/logo.png" alt="Logo">
+                <ul>
+                    <a class="signup-link" href="{{ url_for('auth.sendMail') }}"><li>Sign up</li></a>
+                    <a class="login-link" href="{{ url_for('auth.login') }}"><li>Login</li></a>
+                </ul>
+            </div>
+        </nav>
+
+        <section class="verifymail-container">
+            <form action="{{ url_for('auth.sendMail') }}" method="post">
+                <h1>
+                    <img src="/authentication/static/images/mail.gif" alt="mail">
+                </h1>
+                <h3>Please enter your Mail-ID to verify your account</h3>
+                <div class="container">
+                    <div>
+                        <label for="verify-mail-id">
+                            <i class="fa fa-envelope"></i>
+                            Mail ID <span class="required">*</span>
+                        </label>
+                        <input id="mailID" name="mailID" class="mailID" type="email" required>
+                    </div>
+                    <div>{{ msg }}</div>
+                    <button type="submit" name="submitMail" id="submitMail">Generate OTP</button>
+                </div>
+            </form>
+        </section>
+    </section>
+
+</body>
+</html>
