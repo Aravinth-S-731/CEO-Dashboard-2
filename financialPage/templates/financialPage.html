@@ -19,34 +19,37 @@
 </head>
 <body>
 
-    <!-- Navigation Bar -->
-    <nav id="navBar">
-        <div class="navLinks" id="navLinks">
-            <i class="fa-solid fa-times times-icon menu-icon" onclick="closeDashboardNav()"></i>
-            <ul>
-                <h3>Hi, Welcome {{username}}!</h3>
-                <a href="{{url_for('homePage.home_page')}}">
-                    <li><i class="fa-solid fa-chart-pie" ></i>Home</li>
-                </a>
-                <a href="{{url_for('financialPage.financialModule')}}">
-                    <li><i class="fa-solid fa-coins" ></i>Finance</li>
-                </a>
-                <a href="{{url_for('marketingPage.marketingModule')}}">
-                    <li><i class="fa-solid fa-bullhorn" ></i>Marketing</li>
-                </a>
-                <a href="{{url_for('operationalPage.operationalModule')}}">
-                    <li><i class="fa-solid fa-user-tie" ></i>Operational</li>
-                </a>
-                <a href="{{url_for('communicationPage.communicationModule')}}">
-                    <li><i class="fa-solid fa-comments" ></i>Chat</li>
-                </a>
-                <a href="{{url_for('logout')}}">
-                    <li><i class="fa-solid fa-right-from-bracket" ></i>Log out</li>
-                </a>
-            </ul>
-        </div>
-        <i class="fa-solid fa-bars menu-icon" onclick="openDashboardNav()"></i>
-    </nav>
+<!-- Navigation Bar -->
+<nav id="navBar">
+    <div class="navLinks" id="navLinks">
+        <i class="fa-solid fa-times times-icon menu-icon" onclick="closeDashboardNav()"></i>
+        <ul>
+            <h3>Hi, Welcome {{username}}!</h3>
+            <a href="{{url_for('homePage.home_page')}}">
+                <li><i class="fa-solid fa-chart-pie" ></i>Home</li>
+            </a>
+            <a href="{{url_for('financialPage.financialModule')}}">
+                <li><i class="fa-solid fa-coins" ></i>Finance</li>
+            </a>
+            <a href="{{url_for('marketingPage.marketingModule')}}">
+                <li><i class="fa-solid fa-bullhorn" ></i>Marketing</li>
+            </a>
+            <a href="{{url_for('operationalPage.operationalModule')}}">
+                <li><i class="fa-solid fa-user-tie" ></i>Operational</li>
+            </a>
+            <a href="{{url_for('communicationPage.communicationModule')}}">
+                <li><i class="fa-solid fa-comments" ></i>Chat</li>
+            </a>
+            <a href="{{url_for('adminDashboard.admin')}}">
+                <li id="adminEditLink" style="display: none;"><i class="fa-solid fa-pen-to-square"></i>Edit</li>
+            </a>
+            <a href="{{url_for('logout')}}">
+                <li><i class="fa-solid fa-right-from-bracket" ></i>Log out</li>
+            </a>
+        </ul>
+    </div>
+    <i class="fa-solid fa-bars menu-icon" onclick="openDashboardNav()"></i>
+</nav>
 
     <!-- Profits - Donut -->
     <section class="profit-chart">

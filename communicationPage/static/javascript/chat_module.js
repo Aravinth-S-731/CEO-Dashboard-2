@@ -17,6 +17,9 @@ function closeUpload() {
 const navListLinks = document.querySelectorAll('ul li');
 
 console.log(role)
+if (role === "Admin") {
+    adminEditLink.style.display = 'block';
+}
 if  (role == "client") {
     alert("Apologies " + username + "! As a " + role + ", you are not authorized to access any of the features. Please ")
     openDashboardNav()

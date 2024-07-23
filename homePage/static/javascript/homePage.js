@@ -11,14 +11,20 @@ function closeDashboardNav(){
 const navListLinks = document.querySelectorAll('ul li');
 
 console.log(role)
+if (role === "Admin") {
+    adminEditLink.style.display = 'block';
+}
 if  (role == "Employee" || role == "Manager" || role == "Client") {
     document.getElementById('dashboard-home').style.display = 'none';
+    // document.getElementsByClassName('accounts').style.display = 'none';
     alert("Apologies " + username + "! As a " + role + ", you are not authorized to access any of the features.")
     openDashboardNav()
     navListLinks.forEach(function(item) {
         const text = item.textContent.trim();
         if (text == 'Home' || text == 'Finance') {
             item.style.opacity = 0.5;
+            item.style.pointerEvents = 'none';
+            item.style.cursor = 'not-allowed';
         }
     });
 }
@@ -27,6 +33,7 @@ if (role == "Employee") {
         const text = item.textContent.trim();
         if (text == 'Home' || text == 'Finance' || text == 'Marketing') {
             item.style.opacity = 0.5;
+            item.style.pointerEvents = 'none';
         }
     });
 }
@@ -35,6 +42,7 @@ if (role == "Client") {
         const text = item.textContent.trim();
         if (text == 'Home' || text == 'Finance' || text == 'Operational' || text == 'Chat' ) {
             item.style.opacity = 0.5;
+            item.style.pointerEvents = 'none';
         }
     });
 }

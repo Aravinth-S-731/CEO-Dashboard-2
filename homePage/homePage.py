@@ -15,16 +15,16 @@ def home_page():
     if 'loggedin' in session:
         if session['role'] == "Guest":
             return redirect(url_for('auth.login', msg = f"As a {session['role']}, you do not have access to login."))
-        elif session['role'] != "Admin":
-            return render_template('landingPage.html',
-                                username = session['username'],
-                                email = session['email'],
-                                role = session['role'],
-                                month = [],
-                                revenue = [],
-                                profit = [],
-                                payment_mode = [],
-                                msg=f"You are not authorized to view this page.")
+        # elif session['role'] != "Admin":
+        #     return render_template('landingPage.html',
+        #                         username = session['username'],
+        #                         email = session['email'],
+        #                         role = session['role'],
+        #                         month = [],
+        #                         revenue = [],
+        #                         profit = [],
+        #                         payment_mode = [],
+        #                         msg=f"You are not authorized to view this page.")
         cursor = mydb.cursor()
         months = ['january', 'february', 'march', 'april', 'may', 'june', 'july', 'august', 'september', 'october', 'november', 'december']
         # Initialize the total revenue for each month

@@ -9,6 +9,8 @@ from marketingPage.marketingPage import marketingPage
 from operationalPage.operatingPage import operationalPage
 from communicationPage.communicationPage import communicationPage
 
+from adminDashboard.adminDashboard import adminDashboard
+
 app = Flask(__name__)
 app.secret_key = 'r$W9#kLp2&QnX@5*8yZ$'
 
@@ -33,6 +35,8 @@ app.register_blueprint(financialPage)
 app.register_blueprint(marketingPage)
 app.register_blueprint(operationalPage)
 app.register_blueprint(communicationPage)
+
+app.register_blueprint(adminDashboard)
 
 
 if __name__ == "__main__":

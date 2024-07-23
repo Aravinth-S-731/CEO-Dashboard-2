@@ -125,16 +125,19 @@
                 <h2>Let's Connect Today!</h2>
                 <p>Contact us through our 24/7 live chat we're always happy to help</p>
                 <div class="name input-field">
-                    <input type="text" name="name" id="name" placeholder="Name" required>
+                    <input type="text" name="name" id="name" placeholder="Name">
                 </div>
                 <div class="email input-field">
-                    <input type="email" name="email" id="email" placeholder="E-Mail" required>
+                    <input type="email" name="email" id="email" placeholder="E-Mail">
                 </div>
                 <div class="message input-field">
-                    <textarea name="message" id="message" placeholder="Message" required></textarea>
+                    <textarea name="message" id="message" placeholder="Message"></textarea>
                 </div>
                 <div class="button-container input-field">
-                    <button type="submit">Submit</button>
+                    <span id="cta-msg" class="cta-msg"></span>
+                </div>
+                <div class="button-container input-field">
+                    <button id="submitButton" type="submit">Submit</button>
                 </div>
             </form>
             <img src="/landingPage/static/images/contact-us-image.png" alt="CTA img">
@@ -172,14 +175,63 @@
             }
         }
 
+        // document.addEventListener('DOMContentLoaded', function () {
+        //     const form = document.getElementById('contactForm');
+        //     form.addEventListener('submit', function (event) {
+        //         event.preventDefault();
+        //         if (!validateForm()) {
+        //             return;
+        //         }
+        //         const formData = new FormData(form);
+        //         fetch('/send_email', {
+        //             method: 'POST',
+        //             body: formData
+        //         })
+        //         .then(response => {
+        //             if (response.ok) {
+        //                 alert('Message sent successfully!');
+        //                 form.reset(); // Reset form after successful submission
+        //             } else {
+        //                 alert('Failed to send message. Please try again later.');
+        //             }
+        //         })
+        //         .catch(error => {
+        //             console.error('Error:', error);
+        //             alert('An error occurred. Please try again later.');
+        //         });
+        //     });
+        //     function validateForm() {
+        //         const name = document.getElementById('name').value.trim();
+        //         const email = document.getElementById('email').value.trim();
+        //         const message = document.getElementById('message').value.trim();
+        //         if (name === '' || email === '' || message === '') {
+        //             alert('Please fill in all fields.');
+        //             return false;
+        //         }
+        //         return true;
+        //     }
+        // });
+
         document.addEventListener('DOMContentLoaded', function () {
-            const form = document.getElementById('contactForm');
+            let form = document.getElementById('contactForm');
+            let nameInput = document.getElementById('name');
+            let emailInput = document.getElementById('email');
+            let messageInput = document.getElementById('message');
+            let submitButton = document.getElementById('submitButton');
+            let cta_msg = document.getElementById('cta-msg')
+
+            // Disable submit button by default
+            if(submitButton){
+                submitButton.disabled = true;
+                submitButton.style.opacity = 0.2;
+            }
+
             form.addEventListener('submit', function (event) {
                 event.preventDefault();
                 if (!validateForm()) {
                     return;
                 }
-                const formData = new FormData(form);
+                let formData = new FormData(form);
                 fetch('/send_email', {
                     method: 'POST',
                     body: formData
@@ -188,6 +240,7 @@
                     if (response.ok) {
                         alert('Message sent successfully!');
                         form.reset(); // Reset form after successful submission
+                        submitButton.disabled = true; // Disable submit button after submission
                     } else {
                         alert('Failed to send message. Please try again later.');
                     }
@@ -197,17 +250,63 @@
                     alert('An error occurred. Please try again later.');
                 });
             });
+
+            // Function to validate form
             function validateForm() {
-                const name = document.getElementById('name').value.trim();
-                const email = document.getElementById('email').value.trim();
-                const message = document.getElementById('message').value.trim();
-                if (name === '' || email === '' || message === '') {
-                    alert('Please fill in all fields.');
-                    return false;
+                let name = nameInput.value.trim();
+                let email = emailInput.value.trim();
+                let message = messageInput.value.trim();
+
+                // Update placeholder for email if name is filled
+                if (name !== '') {
+                    emailInput.placeholder = 'Please enter your email';
+                    cta_msg.innerText = 'Please Enter you Mail-ID'
+
+                    // Update placeholder for message if message is filled
+                    if (email !== '') {
+                        messageInput.placeholder = 'Please write your message';
+                        cta_msg.innerText = 'Please Enter you Message'
+                    }
+                    if (message !== '') {
+                        cta_msg.innerText = '';
+                        if (submitButton) {
+                            submitButton.disabled = false;
+                            submitButton.style.opacity = 1;
+                            return true;
+                        }
+                    }
+
+                } else {
+                    emailInput.placeholder = 'E-Mail';
+                    cta_msg.innerText = '';
                 }
-                return true;
+
+                // // Update placeholder for message if message is filled
+                // if (email !== '') {
+                //     messageInput.placeholder = 'Please write your message';
+                //     cta_msg.innerText = 'Please Enter you Message'
+                // } else {
+                //     messageInput.placeholder = 'Message';
+                //     cta_msg.innerText = '';
+                // }
+
+                // Enable submit button if all fields are filled
+                // if (name !== '' && email !== '' && message !== '') {
+                //     submitButton.disabled = false;
+                //     return true;
+                // } else {
+                //     submitButton.disabled = true;
+                //     alert('Please fill in all fields.');
+                //     return false;
+                // }
             }
+
+            // Event listeners for input fields
+            nameInput.addEventListener('input', validateForm);
+            emailInput.addEventListener('input', validateForm);
+            messageInput.addEventListener('input', validateForm);
         });
+
     </script>
 </body>
 </html>

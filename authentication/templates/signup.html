@@ -84,11 +84,6 @@
                             <select id="countryCode" name="countryCode">
                                 <!-- Add options for country codes -->
                                 <option value="+91">+91</option>
-                                <option value="+1">+1</option>
-                                <option value="+98">+98</option>
-                                <option value="+30">+30</option>
-                                <option value="+41">+41</option>
-                                <option value="+61">+61</option>
                             </select>
                             <input type="text" id="phoneNumber" name="phoneNumber" onkeydown="return checkPhno(event)" required>
                         </div>
@@ -111,7 +106,7 @@
                     </div>
                 </div>
             </div>
-            <!-- <div class="invalidMsg">{{ initial_role }}</div> -->
+            <div class="invalidMsg" id="invalidMsg"></div>
             <button type="submit" id="VerifyMail-btn" class="VerifyMail-btn deactive" disabled="true">Create Account</button>
         </form>
     </section>
@@ -177,15 +172,43 @@
                 password.type = "password";
             }
         }
+
         // Check Phone Number
         function checkPhno(event) {
+            // Allowed Keys
+            const allowedKeys = ["Backspace", "Delete", "ArrowLeft", "ArrowRight"];
+            // Input Value ph num
+            let phoneNumber = document.getElementById('phoneNumber').value.trim();
+            let firstDigit = phoneNumber[0];
+
             if (event.key === "Backspace" || event.key === "Delete" || event.key === "Tab" ||
             event.key === "Escape" || event.key === "Enter" ||
             (event.key >= "0" && event.key <= "9")) {
+                if (phoneNumber.length === 10) {
+                    if (allowedKeys.includes(event.key)) {
+                        return true;
+                    }
+                    else {
+                        return false;
+                    }
+                }
+                if (firstDigit[0] !== '6' && firstDigit[0] !== '7' && firstDigit[0] !== '8' && firstDigit[0] !== '9') {
+                    document.getElementById('invalidMsg').innerText = "Number Should start with 6, 7, 8 or 9";
+                }
+                else {
+                    if (phoneNumber.length === 9) {
+                        document.getElementById('invalidMsg').innerText = "";
+                    }
+                    else {
+                        document.getElementById('invalidMsg').innerText = "Enter a 10 digit phone number";
+                    }
+                }
                 return true
             }
             return false
         }
+
+
         // Build Role Selection Dynamically
         let initialRole = "{{ initial_role }}";
         let roleSelect = document.getElementById("role");
@@ -207,16 +230,17 @@
             addOption("Employee", "Employee");
             addOption("Client", "Client");
             addOption("Guest", "Guest");
-        } else if (initialRole === "Employee") {
+        } else if (initialRole === "Guest") {
             addOption("Employee", "Employee");
             addOption("Client", "Client");
             addOption("Guest", "Guest");
-        } else if (initialRole === "Client") {
-            addOption("Client", "Client");
-            addOption("Guest", "Guest");
-        } else if (initialRole === "Guest") {
-            addOption("Guest", "Guest");
         }
+        // else if (initialRole === "Client") {
+        //     addOption("Client", "Client");
+        //     addOption("Guest", "Guest");
+        // } else if (initialRole === "Guest") {
+        //     addOption("Guest", "Guest");
+        // }
 </script>
 </body>
 </html>

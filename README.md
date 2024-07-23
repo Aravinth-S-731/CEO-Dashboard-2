@@ -273,3 +273,111 @@ CEO-Dashboard-Blueprint
 
 ---
 ---
+```
+CEO-Dashboard-2
+├─ app.py
+├─ authentication
+│  ├─ authentication.py
+│  ├─ static
+│  │  ├─ css
+│  │  │  ├─ login.css
+│  │  │  └─ signup.css
+│  │  └─ images
+│  ├─ templates
+│  │  ├─ login.html
+│  │  ├─ otpValidation.html
+│  │  ├─ signup.html
+│  │  └─ verifyEmail.html
+│  ├─ __init__.py
+│  └─ __pycache__
+│     ├─ authentication.cpython-311.pyc
+│     └─ __init__.cpython-311.pyc
+├─ CEO dashboard.pdf
+├─ communicationPage
+│  ├─ chat_history.json
+│  ├─ communicationPage.py
+│  ├─ document_history.json
+│  ├─ static
+│  │  ├─ chat_module.css
+│  │  ├─ javascript
+│  │  │  └─ chat_module.js
+│  │  └─ uploads
+│  │     ├─ Sample-1.jpeg
+│  │     └─ Sample-2.jpeg
+│  ├─ templates
+│  │  └─ communicationPage.html
+│  └─ __pycache__
+│     └─ communicationPage.cpython-311.pyc
+├─ financialPage
+│  ├─ financialPage.py
+│  ├─ static
+│  │  ├─ financial_module.css
+│  │  ├─ images
+│  │  └─ javascript
+│  │     └─ financial_module.js
+│  ├─ templates
+│  │  └─ financialPage.html
+│  ├─ __init__.py
+│  └─ __pycache__
+│     ├─ financialPage.cpython-311.pyc
+│     └─ __init__.cpython-311.pyc
+├─ homePage
+│  ├─ homePage.py
+│  ├─ static
+│  │  ├─ homePage.css
+│  │  ├─ images
+│  │  └─ javascript
+│  │     └─ homePage.js
+│  ├─ templates
+│  │  └─ homePage.html
+│  ├─ __init__.py
+│  └─ __pycache__
+│     ├─ homePage.cpython-311.pyc
+│     ├─ landingPage.cpython-311.pyc
+│     └─ __init__.cpython-311.pyc
+├─ landingPage
+│  ├─ landingPage.py
+│  ├─ static
+│  │  ├─ images
+│  │  └─ style.css
+│  ├─ templates
+│  │  └─ index.html
+│  ├─ __init__.py
+│  └─ __pycache__
+│     ├─ landingPage.cpython-311.pyc
+│     └─ __init__.cpython-311.pyc
+├─ marketingPage
+│  ├─ marketingPage.py
+│  ├─ static
+│  │  ├─ images
+│  │  ├─ javascript
+│  │  │  └─ marketing_module.js
+│  │  └─ marketing_module.css
+│  ├─ templates
+│  │  └─ marketingPage.html
+│  └─ __pycache__
+│     └─ marketingPage.cpython-311.pyc
+├─ operationalPage
+│  ├─ operatingPage.py
+│  ├─ static
+│  │  ├─ images
+│  │  ├─ javascript
+│  │  │  └─ operational_module.js
+│  │  └─ operational_module.css
+│  ├─ templates
+│  │  ├─ employee_details.html
+│  │  └─ operationalPage.html
+│  └─ __pycache__
+│     └─ operatingPage.cpython-311.pyc
+├─ previous design
+├─ README.md
+├─ sample.css
+├─ sample.html
+├─ screen captures
+├─ static
+│  ├─ navBar.css
+│  └─ nav_bar.css
+├─ TermsAndConditions.pdf
+└─ uploads
+
+```

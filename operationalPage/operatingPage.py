@@ -1,8 +1,9 @@
-from flask import Flask, Blueprint, session, render_template, url_for, redirect
+from flask import Flask, Blueprint, session, render_template, url_for, redirect, make_response
 import mysql.connector
 from flask_mysqldb import MySQL
 import MySQLdb.cursors
 import MySQLdb.cursors, re, hashlib
+import pdfkit
 
 operationalPage = Blueprint('operationalPage', __name__, template_folder='templates', static_folder='static', static_url_path='/operationalPage/static')
 
@@ -98,6 +99,17 @@ def operationalModule():
                 emp_gender_count["male"]+=1
             else:
                 emp_gender_count["female"]+=1
+
+        # Render PDF
+        # rendered_html = render_template('employee_details.html', emp_details=emp_details)
+        # pdf = pdfkit.from_string(rendered_html, False)
+
+        # # Serve PDF for download
+        # response = make_response(pdf)
+        # response.headers['Content-Type'] = 'application/pdf'
+        # response.headers['Content-Disposition'] = 'attachment; filename=employee_details.pdf'
+
+        # return response
 
         print(department_emp_counts)
         print(department_avg_salary)

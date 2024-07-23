@@ -1,4 +1,4 @@
-from flask import Blueprint,render_template, request, redirect, url_for, session
+from flask import Blueprint,render_template, request, redirect, url_for, session, send_from_directory, send_file
 from flask_mysqldb import MySQL
 import MySQLdb.cursors
 import MySQLdb.cursors, re, hashlib
@@ -57,6 +57,11 @@ def login():
             msg = "Invalid Username / Password"
     return render_template('login.html', msg = msg)
 
+@auth.route('/download')
+def download():
+    path = 'TermsAndConditions.pdf'
+    return send_file(path, as_attachment=True)
+
 @auth.route('/verify-mail', methods = ["GET", "POST"])
 def sendMail():
     session.pop('email', None)
@@ -75,12 +80,12 @@ def sendMail():
             initial_role = 'Admin'
         elif 'manager' in mailID.lower():
             initial_role = 'Manager'
-        elif 'employee' in mailID.lower():
-            initial_role = 'Employee'
-        elif 'client' in mailID.lower():
-            initial_role = 'Client'
-        elif 'guest' in mailID.lower():
-            initial_role = 'Guest'
+        # elif 'employee' in mailID.lower():
+        #     initial_role = 'Employee'
+        # elif 'client' in mailID.lower():
+        #     initial_role = 'Client'
+        # elif 'guest' in mailID.lower():
+        #     initial_role = 'Guest'
         else:
             initial_role = 'Guest'
         session['initial_role'] = initial_role

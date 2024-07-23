@@ -10,6 +10,9 @@ function closeDashboardNav(){
 const navListLinks = document.querySelectorAll('ul li');
 
 console.log(role)
+if (role === "Admin") {
+    adminEditLink.style.display = 'block';
+}
 if  (role == "client") {
     alert("Apologies " + username + "! As a " + role + ", you are not authorized to access any of the features. Please ")
     openDashboardNav()
@@ -27,6 +30,7 @@ if (role == "Employee") {
         const text = item.textContent.trim();
         if (text == 'Home' || text == 'Finance' || text == 'Marketing') {
             item.style.opacity = 0.5;
+            item.style.cursor = 'not-allowed';
         }
     });
 }

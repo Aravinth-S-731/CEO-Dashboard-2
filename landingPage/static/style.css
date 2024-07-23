@@ -314,6 +314,10 @@ nav .login-link li{
 .cta .button-container {
     text-align: center;
 }
+.cta .cta-msg{
+    font-size: 18px;
+    color: orangered;
+}
 .cta .button-container button {
     padding: 10px 20px;
     font-size: 16px;

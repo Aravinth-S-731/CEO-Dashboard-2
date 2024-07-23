@@ -41,6 +41,9 @@
                 <a href="{{url_for('communicationPage.communicationModule')}}">
                     <li><i class="fa-solid fa-comments" ></i>Chat</li>
                 </a>
+                <a href="{{url_for('adminDashboard.admin')}}">
+                    <li id="adminEditLink" style="display: none;"><i class="fa-solid fa-pen-to-square"></i>Edit</li>
+                </a>
                 <a href="{{url_for('logout')}}">
                     <li><i class="fa-solid fa-right-from-bracket" ></i>Log out</li>
                 </a>
@@ -52,7 +55,7 @@
 
     <h3 class="chart-head">Revenue per Month</h3>
     <!-- Monthly Revenue -->
-    <section class="monthly-revenue">
+    <section class="monthly-revenue" id="dashboard-home">
         <div class="chart-container grid-item">
             <div class="revenue-line-chat" id="revenue">
                 <canvas id="revenue-line-chart"></canvas>
@@ -101,7 +104,7 @@
     
     <h3 class="chart-head">Payment Mode</h3>
     <!-- Payment Method -->
-    <section class="payment-mode">
+    <section class="payment-mode" id="payment-mode">
         <div class="information">
             <div class="container">
                 <img src="/homePage/static/images/upi.png" alt="UPI" />

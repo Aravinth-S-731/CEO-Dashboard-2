@@ -1,0 +1,104 @@
+<!-- selectMonth.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Edit</title>
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="/static/navBar.css">
+    <link rel="stylesheet" href="/adminDashboard/static/adminDashboard.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav id="navBar">
+        <div class="navLinks" id="navLinks">
+            <i class="fa-solid fa-times times-icon menu-icon" onclick="closeDashboardNav()"></i>
+            <ul>
+                <h3>Hi, Welcome {{username}}!</h3>
+                <a href="{{url_for('homePage.home_page')}}">
+                    <li><i class="fa-solid fa-chart-pie" ></i>Home</li>
+                </a>
+                <a href="{{url_for('financialPage.financialModule')}}">
+                    <li><i class="fa-solid fa-coins" ></i>Finance</li>
+                </a>
+                <a href="{{url_for('marketingPage.marketingModule')}}">
+                    <li><i class="fa-solid fa-bullhorn" ></i>Marketing</li>
+                </a>
+                <a href="{{url_for('operationalPage.operationalModule')}}">
+                    <li><i class="fa-solid fa-user-tie" ></i>Operational</li>
+                </a>
+                <a href="{{url_for('communicationPage.communicationModule')}}">
+                    <li><i class="fa-solid fa-comments" ></i>Chat</li>
+                </a>
+                <a href="{{url_for('adminDashboard.admin')}}">
+                    <li id="adminEditLink" style="display: none;"><i class="fa-solid fa-pen-to-square"></i>Edit</li>
+                </a>
+                <a href="{{url_for('logout')}}">
+                    <li><i class="fa-solid fa-right-from-bracket" ></i>Log out</li>
+                </a>
+            </ul>
+        </div>
+        <i class="fa-solid fa-bars menu-icon" onclick="openDashboardNav()"></i>
+    </nav>
+
+    <h3>Select Month to View/Edit Data</h3>
+    <form id="select-month-form">
+        <label for="selected_month">Please select a month to continue</label>
+        <select id="selected_month" name="selected_month" aria-label="Select Month">
+            <option value="" disabled selected>Select a month</option>
+            <option value="january">January</option>
+            <option value="february">February</option>
+            <option value="march">March</option>
+            <option value="april">April</option>
+            <option value="may">May</option>
+            <option value="june">June</option>
+            <option value="july">July</option>
+            <option value="august">August</option>
+            <option value="september">September</option>
+            <option value="october">October</option>
+            <option value="november">November</option>
+            <option value="december">December</option>
+        </select>
+        <button type="button" onclick="viewData()">View Data</button>
+    </form>
+
+    <div id="data-table">
+        <div class="table-header">
+            <h2>Data for <span id="month-name"></span></h2>
+            <div class="save-msg">
+                <button onclick="saveData()">
+                    <i class="fa-solid fa-floppy-disk"></i>
+                    Save Changes
+                </button>
+                <div id="message"></div>
+            </div>
+        </div>
+        <table>
+            <thead>
+                <tr class="title">
+                    <th>Date</th>
+                    <th>Revenue</th>
+                    <th>Expense</th>
+                    <th>Profit</th>
+                </tr>
+            </thead>
+            <tbody id="table-body">
+                <!-- Dynamic Data Insertion -->
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        const role = {{role | tojson}}
+        const username = {{username | tojson}}
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.min.js" integrity="sha512-7U4rRB8aGAHGVad3u2jiC7GA5/1YhQcQjxKeaVms/bT66i3LVBMRcBI9KwABNWnxOSwulkuSXxZLGuyfvo7V1A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="/adminDashboard/static/javascript/adminDashboard.js"></script>
+
+</body>
+</html>
