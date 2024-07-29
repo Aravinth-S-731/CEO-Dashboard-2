@@ -1,0 +1,121 @@
+<!-- selectMonth.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Edit</title>
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="/static/navBar.css">
+    <link rel="stylesheet" href="/adminDashboard/static/editEmployee.css">
+    <link rel="stylesheet" href="/adminDashboard/static/adminDashboard.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav id="navBar">
+        <div class="navLinks" id="navLinks">
+            <i class="fa-solid fa-times times-icon menu-icon" onclick="closeDashboardNav()"></i>
+            <ul>
+                <h3>Hi, Welcome {{username}}!</h3>
+                <a href="{{url_for('homePage.home_page')}}">
+                    <li><i class="fa-solid fa-chart-pie" ></i>Home</li>
+                </a>
+                <a href="{{url_for('financialPage.financialModule')}}">
+                    <li><i class="fa-solid fa-coins" ></i>Finance</li>
+                </a>
+                <a href="{{url_for('marketingPage.marketingModule')}}">
+                    <li><i class="fa-solid fa-bullhorn" ></i>Marketing</li>
+                </a>
+                <a href="{{url_for('operationalPage.operationalModule')}}">
+                    <li><i class="fa-solid fa-user-tie" ></i>Operational</li>
+                </a>
+                <a href="{{url_for('communicationPage.communicationModule')}}">
+                    <li><i class="fa-solid fa-comments" ></i>Chat</li>
+                </a>
+                <a href="{{url_for('adminDashboard.admin')}}">
+                    <li id="adminEditLink" style="display: none;"><i class="fa-solid fa-pen-to-square"></i>Edit</li>
+                </a>
+                <a href="{{url_for('logout')}}">
+                    <li><i class="fa-solid fa-right-from-bracket" ></i>Log out</li>
+                </a>
+            </ul>
+        </div>
+        <i class="fa-solid fa-bars menu-icon" onclick="openDashboardNav()"></i>
+    </nav>
+
+
+    <div class="header">
+        <h3>Edit Employee Details</h3>
+        <div>
+            <button class="edit_emp" onclick="addEmployeeRow()">
+                <i class="fa-solid fa-user-plus"></i>
+                Add Employee
+            </button>
+            <button class="edit_emp" onclick="saveEmployeeData()">
+                <i class="fa-solid fa-floppy-disk"></i>
+                Save Changes
+            </button>
+        </div>
+    </div>
+    <div id="message"></div>
+
+    <table id="employee-table">
+        <thead>
+            <tr>
+                <th>Emp ID</th>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Department</th>
+                <th>Salary</th>
+                <th>Gender</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for employee in employees %}
+                <tr>
+                    <td class="emp_id">{{ employee.emp_id }}</td>
+                    <td contenteditable="true">{{ employee.name }}</td>
+                    <td contenteditable="true">{{ employee.age }}</td>
+                    <td contenteditable="true">
+                        <!-- {{ employee.department }} -->
+                        <select>
+                            <option value="management" {% if employee.department == 'management' %}selected{% endif %}>Management</option>
+                            <option value="IT" {% if employee.department == 'IT' %}selected{% endif %}>IT</option>
+                            <option value="media" {% if employee.department == 'media' %}selected{% endif %}>Media</option>
+                            <option value="creative team" {% if employee.department == 'creative team' %}selected{% endif %}>Creative Team</option>
+                            <option value="research" {% if employee.department == 'research' %}selected{% endif %}>Research</option>
+                            <option value="HR" {% if employee.department == 'HR' %}selected{% endif %}>HR</option>
+                            <option value="accounts" {% if employee.department == 'accounts' %}selected{% endif %}>Accounts</option>
+                        </select>
+                    </td>
+                    <td contenteditable="true">{{ employee.salary }}</td>
+                    <td contenteditable="true">
+                        <!-- {{ employee.gender }} -->
+                        <select>
+                            <option value="male" {% if employee.gender == 'male' %}selected{% endif %}>Male</option>
+                            <option value="female" {% if employee.gender == 'female' %}selected{% endif %}>Female</option>
+                        </select>
+                    </td>
+                    <td>
+                        <button onclick="deleteEmployee({{ employee.emp_id }})"><i class="fa-solid fa-trash"></i></button>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+
+    <script>
+        const role = {{role | tojson}}
+        const username = {{username | tojson}}
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.min.js" integrity="sha512-7U4rRB8aGAHGVad3u2jiC7GA5/1YhQcQjxKeaVms/bT66i3LVBMRcBI9KwABNWnxOSwulkuSXxZLGuyfvo7V1A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="/adminDashboard/static/javascript/editEmployee.js"></script>
+
+</body>
+</html>

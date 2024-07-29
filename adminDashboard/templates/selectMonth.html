@@ -46,6 +46,14 @@
         <i class="fa-solid fa-bars menu-icon" onclick="openDashboardNav()"></i>
     </nav>
 
+    <!-- Add Employee BTN -->
+     <a href="{{url_for('adminDashboard.edit_employee')}}">
+        <button class="emp-edit"  >
+            <i class="fa-solid fa-user-plus"></i>
+            Edit Employee
+         </button>
+     </a>
+
     <h3>Select Month to View/Edit Data</h3>
     <form id="select-month-form">
         <label for="selected_month">Please select a month to continue</label>

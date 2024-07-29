@@ -26,6 +26,22 @@ body{
     overflow-x: hidden;
 }
 
+.emp-edit{
+    position: absolute;
+    right: 0;
+    top: 0;
+    margin: 1em;
+    width: 170px;
+    height: 40px;
+    padding: 10px 20px;
+    background-color: var(--primary);
+    color: var(--on-primary);
+    border: none;
+    border-radius: 7px;
+    font-size: 14px;
+    letter-spacing: 1px;
+    box-shadow: 0px 0px 4px #000;
+}
 
 h3{
     padding-top: 40px;
@@ -103,7 +119,7 @@ div.table-header{
     align-items: center;
     justify-content: space-between;
 }
-div.table-header button{
+div.table-header button, button.edit_emp{
     padding: 5px 15px;
     font-size: 14px;
     font-weight: 600;

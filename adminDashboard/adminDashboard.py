@@ -11,6 +11,7 @@ mydb = mysql.connector.connect(
     database="ceo-revenue"
 )
 
+
 @adminDashboard.route('/view-data', methods=['POST'])
 def view_data():
     if 'loggedin' in session and session['role'] == "Admin":
@@ -34,6 +35,7 @@ def view_data():
         return jsonify({'message': 'Selected month not provided'}), 400
 
     return jsonify({'message': 'Unauthorized'}), 401
+
 
 @adminDashboard.route('/save-data', methods=['POST'])
 def save_data():
@@ -65,6 +67,7 @@ def save_data():
 
     return {'message': 'Unauthorized'}, 401
 
+
 @adminDashboard.route('/admin', methods=['GET'])
 def admin():
     if 'loggedin' in session and session['role'] == "Admin":
@@ -74,3 +77,77 @@ def admin():
                                 role = session['role'],)
 
     return redirect(url_for('auth.login'))
+
+
+@adminDashboard.route('/edit-employee', methods=['GET'])
+def edit_employee():
+    if 'loggedin' in session and session['role'] == "Admin":
+        cursor = mydb.cursor(dictionary=True)
+        cursor.execute("SELECT * FROM `ceo-application`.employee_details")
+        employees = cursor.fetchall()
+        cursor.close()
+        return render_template('editEmployee.html',
+                                employees=employees,
+                                username = session['username'],
+                                email = session['email'],
+                                role = session['role'],)
+    return redirect(url_for('login'))
+
+
+@adminDashboard.route('/save-employee-data', methods=['POST'])
+def save_employee_data():
+    if 'loggedin' in session and session['role'] == "Admin":
+        data = request.json
+        cursor = mydb.cursor()
+
+        for employee in data['employees']:
+            print(employee)
+            department = employee.get('department', '').strip()
+            gender = employee.get('gender', '').strip()
+            print(department, gender)
+
+            # Check if emp_id is valid
+            if int(employee['emp_id']) > 49:
+                # Insert new employee
+                insert_query = """
+                    INSERT INTO `ceo-application`.employee_details (emp_id, name, age, department, salary, gender)
+                    VALUES (%s, %s, %s, %s, %s, %s)
+                """
+                try:
+                    cursor.execute(insert_query, (employee['emp_id'], employee['name'], employee['age'], department, employee['salary'], gender))
+                except mysql.connector.IntegrityError as e:
+                    # Handle duplicate emp_id or other integrity errors
+                    print(f"Error: {e}")
+            else:
+                # Update existing employee
+                update_query = """
+                    UPDATE `ceo-application`.employee_details
+                    SET name = %s, age = %s, department = %s, salary = %s, gender = %s
+                    WHERE emp_id = %s
+                """
+                cursor.execute(update_query, (employee['name'], employee['age'], department, employee['salary'], gender, employee['emp_id']))
+
+        mydb.commit()
+        cursor.close()
+        return {'message': 'Data saved successfully'}, 200
+
+    return {'message': 'Unauthorized'}, 401
+
+
+@adminDashboard.route('/delete-employee', methods=['POST'])
+def delete_employee():
+    if 'loggedin' in session and session['role'] == "Admin":
+        data = request.json
+        emp_id = data.get('emp_id')
+
+        if emp_id:
+            cursor = mydb.cursor()
+            delete_query = "DELETE FROM `ceo-application`.employee_details WHERE emp_id = %s"
+            cursor.execute(delete_query, (emp_id,))
+            mydb.commit()
+            cursor.close()
+            return {'success': True}, 200
+
+        return {'message': 'Employee ID not provided'}, 400
+
+    return {'message': 'Unauthorized'}, 401

@@ -16,8 +16,7 @@ if (role === "Admin") {
 }
 
 function viewData() {
-    // const selectedMonth = document.getElementById('selected_month').value;
-    selectedMonth = 'may'
+    const selectedMonth = document.getElementById('selected_month').value;
     if (!selectedMonth) {
         alert('Please select a month');
         return;
